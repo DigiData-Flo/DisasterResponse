@@ -1,7 +1,7 @@
 # Disaster Response Pipeline Project
 
 
-![](Visualization/Recall_Metric.png)
+
 
 
 Udacity Data Scientist Nanodegree Project 1
@@ -58,6 +58,36 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 # Datasets
 Dataset with around 26.000 categorized messages, with 36 different categories.
+
+### Overview of Training Dataset
+  The data set contains around 26,000 messages of which around 20,000 correspond at least to the "related" category and
+  possibly other categories.
+  <br><br>
+  The aim was to train a machine learning model in such a way that the greatest possible recall
+  value is achieved.
+  <br><br>
+  Unfortunately, the recall values achieved are rather modest with a mean value of 37.9%. It is noticeable,
+  however, that the categories are not all the same in terms of their recall values.
+  Rather, a steady decrease in the recall values achieved can be seen.
+  <br><br>
+  This leads to the assumption that the recall values achieved could be related to the messages
+  available.
+  <br><br>
+  However, if you calculate the difference between the placement according to the number of messages and the placement according to
+  the recall value, it shows that there are categories that deliver good recall values despite little data, and vice versa.
+#### Metric Mean Values for each Metric
+![](Visualization/Metric_Means.png)
+#### Recall Metric Values for each Category
+![](Visualization/Recall_Metric.png)
+#### Messages for each category
+![](Visualization/Category_Count.png)
+#### Difference between the placement according to the number of messages<br>and the placement according to the recall value
+![](Visualization/Placement_Difference.png)
+#### All Metrics values for each category
+The red dot dashes are the mean values for the different metrics.<br>
+![](Visualization/All_Metrics.png)
+
+
 
 # Collaboration
 Therefore it is a Udacity project, there is no collaboration needed.
