@@ -1,10 +1,6 @@
 # Disaster Response Pipeline Project
 
-
-
-
-
-Udacity Data Scientist Nanodegree Project 1
+Udacity Data Scientist Nanodegree Project 2
 
 # Installation
 Please clone the repository https://github.com/DigiData-Flo/DisasterResponse.git<br>
