@@ -32,7 +32,7 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import make_scorer, recall_score
+from sklearn.metrics import precision_recall_fscore_support, make_scorer, recall_score
 from sklearn.base import BaseEstimator, TransformerMixin
 from feature_extraction.text_length_extractor import TextlengthExtractor
 ```

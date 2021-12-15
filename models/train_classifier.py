@@ -13,11 +13,12 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import FeatureUnion
+from sklearn.model_selection import GridSearchCV
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.multioutput import MultiOutputClassifier, ClassifierChain
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import precision_recall_fscore_support, make_scorer, recall_score
 from sklearn.metrics import accuracy_score
 
 
@@ -71,12 +72,39 @@ def tokenize(text):
     
     return tokens
 
-def build_model():
+def build_model(n_jobs=7):
     
-    ## load model parameter from GridSearchCV process
-    model = joblib.load('DecisionTree.pkl')
+    ## Define a pipeline
+    pipeline = Pipeline([
+        ('features', FeatureUnion([
 
-    return model
+            ('text_pipeline', Pipeline([
+                ('vect', CountVectorizer(tokenizer=tokenize)),
+                ('tfidf', TfidfTransformer())
+            ])),
+
+            ('text_length', TextlengthExtractor())
+            
+        ])),
+
+        ('clf', MultiOutputClassifier(DecisionTreeClassifier()))
+    ])
+    
+    ## Define a scorer
+    scorer = make_scorer(recall_score, average='micro')
+
+
+    ## define paramaters for GridSearchCV
+    parameters = {
+        'features__text_pipeline__vect__min_df': [1, 5],
+        'clf__estimator__min_samples_split': [2,10],
+        
+    }
+
+    cv = GridSearchCV(pipeline, param_grid=parameters, scoring=scorer, verbose=11)
+
+    return cv
+    
 
 def create_metric_dataframe(y_test, y_pred, labels):
     '''
@@ -169,7 +197,7 @@ def evaluate_model(model, X_test, y_test, category_names):
 
 
 def save_model(model, model_filepath):
-    joblib.dump(model, 'trained_model.pkl', compress=1)
+    joblib.dump(model, model_filepath, compress=1)
 
 
 

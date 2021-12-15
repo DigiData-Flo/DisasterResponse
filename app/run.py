@@ -51,32 +51,11 @@ def index():
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
-    figures = return_figures(df)
     #print('Figures List as JSON')
     #print(figures)
 
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
-    graphs = [
-        {
-            'data': [
-                Bar(
-                    x=['news', 'social', 'other'],
-                    y=[5,3,2]
-                )
-            ],
-
-            'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
-            }
-        }
-    ]
+    figures = return_figures(df)
 
 
     # encode plotly graphs in JSON

@@ -14,7 +14,7 @@ def return_figures(df):
     """
 
     ## Category count
-    ## From Database Database
+    ## From Database dataframe
     ## Bar Plot
     graph_one = []
     ## get categories from dataframe
@@ -112,6 +112,28 @@ def return_figures(df):
         yaxis = dict(title = 'Metric Mean Value')
     )
 
+    ## Check which text messages have assigned labels
+    disasters_assigned = pd.DataFrame(y.sum(axis=1).value_counts()).reset_index()
+    ## Define column names
+    disasters_assigned.columns = ['messages_assigned', 'message_count']## Categories per message
+
+    messages_assigned = disasters_assigned['messages_assigned']
+    message_count = disasters_assigned['message_count']
+
+    ## From database dataframe
+    ## Bar Plot
+    graph_five = []
+    graph_five.append(
+        go.Bar(
+        y = message_count,
+        x = messages_assigned ))
+
+    ## Plot 4 layout
+    layout_five = dict(
+        title = 'Number of messages depending on how many<br>categories are assigned to the messages',
+        yaxis = dict(title = 'Message Count'),
+        xaxis = dict(title = 'Number of assigned Categories')
+    )
 
 
 
@@ -122,5 +144,6 @@ def return_figures(df):
     figures.append(dict(data=graph_two, layout=layout_two))
     figures.append(dict(data=graph_three, layout=layout_three))
     figures.append(dict(data=graph_four, layout=layout_four))
+    figures.append(dict(data=graph_five, layout=layout_five))
 
     return figures
