@@ -38,9 +38,18 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import make_scorer, recall_score
 from sklearn.base import BaseEstimator, TransformerMixin
-
+from feature_extraction.text_length_extractor import TextlengthExtractor
 ```
+
+## Custom Package
+```
+from feature_extraction.text_length_extractor import TextlengthExtractor
+```
+Please go to `package/` folder and use `pip install .` for local installation of TextlengthExtractor.
+
 ## To start the web app
+
+
 
 1. Run the following commands in the project's root directory to set up your database and model.
 
