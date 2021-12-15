@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
         <h1 class="text-center">Disaster Response Project</h1>
         <p class="text-center">Analyzing message data for disaster response</p>
         <hr />
-      
+
         <div class="row">
             <div class="col-lg-12 form-group-lg">
                 <form action="/go" method="get">
@@ -56,6 +56,23 @@
     {% block content %}
         <div class="page-header">
             <h1 class="text-center">Overview of Training Dataset</h1>
+            <p>
+              The data set contains around 26,000 messages of which around 20,000 correspond at least to the "related" category and
+              possibly other categories.
+              <br><br>
+              The aim was to train a machine learning model in such a way that the greatest possible recall
+              value is achieved.
+              <br><br>
+              Unfortunately, the recall values achieved are rather modest with a mean value of 37.9%. It is noticeable,
+              however, that the categories are not all the same in terms of their recall values.
+              Rather, a steady decrease in the recall values achieved can be seen.
+              <br><br>
+              This leads to the assumption that the recall values achieved could be related to the messages
+              available.
+              <br><br>
+              However, if you calculate the difference between the placement according to the number of messages and the placement according to
+              the recall value, it shows that there are categories that deliver good recall values despite little data, and vice versa.
+            </p>
         </div>
     {% endblock %}
 
